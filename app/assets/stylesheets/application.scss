@@ -2,9 +2,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import "bootstrap/alerts";
 
 // App
 @import "products";
+@import "carts";
 
 // Global
 body {
