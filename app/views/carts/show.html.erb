@@ -6,7 +6,7 @@
 
   <% if enhanced_cart.empty?  %>
 
-  <div class="alert alert-info">
+  <div class="alert alert-info jumbotron">
     Your cart is empty! <a href="/">Keep Shopping</a>
   </div>
 
@@ -47,9 +47,9 @@
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-amount="<%= cart_subtotal_cents %>"
           data-name="Jungle"
-          data-description="Khurram Virani's Jungle Order"
+          data-description="Vanessa's Jungle Order"
           data-locale="auto"
-          data-email="kvirani@gmail.com"
+          data-email="vanessa@gmail.com"
           data-currency="cad">
         </script>
       <% end %>
