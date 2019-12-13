@@ -10,9 +10,9 @@ class SessionsController < ApplicationController
       # save the user id inside the browser cookie to keep the user logged in
       session[:user_id] = user.id
       redirect_to '/'
-    else
-      # if user's login doesn't work, send them back to login form
-      redirect_to '/login'
+    # else
+    #   # if user's login doesn't work, send them back to login form
+    #   redirect_to '/login'
     end
   end
 
