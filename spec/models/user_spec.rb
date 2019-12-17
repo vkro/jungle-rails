@@ -42,6 +42,10 @@ RSpec.describe User, type: :model do
     end
 
     it 'is not valid if email matches an email in the database, regardless of case' do
+      user1 = described_class.create(first_name: 'a', last_name: 'b', email: 'abc@def.com', password: 'password', password_confirmation: 'password')
+      user2 = described_class.create(first_name: 'b', last_name: 'c', email: 'abc@def.com', password: 'password1', password_confirmation: 'password1')
+      user3 = described_class.create(first_name: 'c', last_name: 'd', email: 'aBc@def.com', password: 'password2', password_confirmation: 'password2')
+      expect(user2).not_to be_valid
     end
 
     it 'is not valid without an email' do
