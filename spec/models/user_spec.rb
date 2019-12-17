@@ -22,12 +22,23 @@ RSpec.describe User, type: :model do
     end
 
     it 'cannot be created without matching password and password_confirmation' do
+      new_user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'password', password_confirmation: 'passw')
+      expect(new_user).not_to be_valid
     end
 
+    it 'cannot be created without a password' do
+      new_user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: nil, password_confirmation: 'passw')
+      expect(new_user).not_to be_valid
+    end
+    
+    it 'cannot be created without a password confirmation' do
+      new_user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'password', password_confirmation: nil)
+      expect(new_user).not_to be_valid
+    end
+    
     it 'is not valid without a password' do
-    end
-
-    it 'is not valid without a password_confirmation' do
+      subject.password = nil
+      expect(subject).not_to be_valid
     end
 
     it 'is not valid if email matches an email in the database, regardless of case' do
