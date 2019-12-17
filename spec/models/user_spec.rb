@@ -2,20 +2,23 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  subject { described_class.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'password', password_confirmation: 'password')}
 
   describe 'Validations' do
-    
+
     it 'is valid with valid attributes' do
-      @user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'password', password_confirmation: 'password')
-      expect(@user).to be_valid
+      expect(subject).to be_valid
     end
 
     it 'is not valid if password_confirmation does not match password field' do
-      @user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'passwordd', password_confirmation: 'password')
-      expect(@user).not_to be_valid
+      subject.password_confirmation = 'xdpassword'
+      expect(subject).not_to be_valid
     end
 
     it 'cannot be created if password is less than 8 characters' do
+      subject.password = 'passwor'
+      subject.password_confirmation = 'passwor'
+      expect(subject).not_to be_valid
     end
 
     it 'cannot be created without matching password and password_confirmation' do
