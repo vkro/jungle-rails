@@ -18,17 +18,17 @@ RSpec.describe User, type: :model do
     end
 
     it 'cannot be created without a password' do
-      new_user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: nil, password_confirmation: 'passw')
+      new_user = described_class.create(first_name: "name", last_name: 'ln', email: 'me@me.com', password: nil, password_confirmation: 'passw')
       expect(new_user).not_to be_valid
     end
     
     it 'cannot be created without a password confirmation' do
-      new_user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'password', password_confirmation: nil)
+      new_user = described_class.create(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'password', password_confirmation: nil)
       expect(new_user).not_to be_valid
     end
 
     it 'cannot be created if password is less than 8 characters' do
-      new_user = User.new(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'passwor', password_confirmation: 'passwor')
+      new_user = described_class.create(first_name: "name", last_name: 'ln', email: 'me@me.com', password: 'passwor', password_confirmation: 'passwor')
       expect(new_user).not_to be_valid
     end
 
