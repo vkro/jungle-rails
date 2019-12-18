@@ -20,9 +20,11 @@ RSpec.feature "Visitor navigates to product details page", type: :feature, js: t
   scenario "From home page, they click on product details button, and see the product page" do
     # ACT
     visit root_path
+    # async - waits until at least one element matching selector appears on page
     click_on('Details', match: :first)
 
     # DEBUG / VERIFY
+    # async - as above
     expect(page).to have_css('section.products-show')
     save_screenshot
   end
