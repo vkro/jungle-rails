@@ -31,7 +31,4 @@ RSpec.feature "When visitor clicks shopping-cart 'Add' button from home page, ca
     save_screenshot
   end
 
-
-
-
 end
