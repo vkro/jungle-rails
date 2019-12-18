@@ -46,6 +46,7 @@ RSpec.describe User, type: :model do
       user1 = described_class.create(first_name: 'a', last_name: 'b', email: 'abc@def.com', password: 'password', password_confirmation: 'password')
       user2 = described_class.create(first_name: 'b', last_name: 'c', email: 'abc@def.com', password: 'password1', password_confirmation: 'password1')
       user3 = described_class.create(first_name: 'c', last_name: 'd', email: 'aBc@def.com', password: 'password2', password_confirmation: 'password2')
+      expect(user1).to be_valid
       expect(user2).not_to be_valid
       expect(user3).not_to be_valid
     end
@@ -63,28 +64,31 @@ RSpec.describe User, type: :model do
 
   describe '.authenticate_with_credentials' do
 
+    before :each do    
+      @subject1 = described_class.create(first_name: 'a', last_name: 'b', email: 'abc@def.com', password: 'password', password_confirmation: 'password')
+      @subject2 = described_class.create(first_name: 'b', last_name: 'c', email: ' abcdef@def.com ', password: 'password1', password_confirmation: 'password1')
+    end
+
+    
     it 'returns user if successfully authenticated' do
-      user1 = described_class.create(first_name: 'a', last_name: 'b', email: 'abc@def.com', password: 'password', password_confirmation: 'password')
-      user2 = described_class.create(first_name: 'b', last_name: 'c', email: ' abcdef@def.com ', password: 'password1', password_confirmation: 'password1')
-      expect(User.authenticate_with_credentials(user1.email, user1.password) == User.find_by(email: user1.email)).to be true
-      expect(User.authenticate_with_credentials(user2.email, user2.password) == User.find_by(email: user2.email.strip)).to be true
-      expect(User.authenticate_with_credentials(user1.email, user1.password) == User.find_by(email: 'notanemail@email.com')).to be false
+      # user1 = described_class.create(first_name: 'a', last_name: 'b', email: 'abc@def.com', password: 'password', password_confirmation: 'password')
+      # user2 = described_class.create(first_name: 'b', last_name: 'c', email: ' abcdef@def.com ', password: 'password1', password_confirmation: 'password1')
+      expect(User.authenticate_with_credentials(@subject1.email, @subject1.password) == User.find_by(email: @subject1.email)).to be true
+      expect(User.authenticate_with_credentials(@subject2.email, @subject2.password) == User.find_by(email: @subject2.email.strip)).to be true
+      expect(User.authenticate_with_credentials(@subject1.email, @subject2.password) == User.find_by(email: @subject1.email)).to be false
     end
 
     it 'successfully authenticates if user enters email with wrong case' do
-      user1 = described_class.create(first_name: 'a', last_name: 'b', email: 'aBc@def.com', password: 'password', password_confirmation: 'password')
-      expect(User.authenticate_with_credentials('ABC@DEF.COM', user1.password) == User.find_by(email: user1.email.downcase)).to be true
+      @subject1.email = @subject1.email.upcase
+      expect(User.authenticate_with_credentials(@subject1.email, @subject1.password) == User.find_by(email: @subject1.email.downcase)).to be true
     end
 
     it 'successfully authenticates if user enters email with white space' do
-      user1 = described_class.create(first_name: 'a', last_name: 'b', email: 'abc@def.com', password: 'password', password_confirmation: 'password')
-      expect(User.authenticate_with_credentials('  abc@def.com ', user1.password) == User.find_by(email: user1.email.strip)).to be true
+      expect(User.authenticate_with_credentials(@subject2.email, @subject2.password) == User.find_by(email: @subject2.email.strip)).to be true
     end
 
     it 'returns nil if not successfully authenticated' do
-      user1 = described_class.create(first_name: 'a', last_name: 'b', email: 'abc@def.com', password: 'password', password_confirmation: 'password')
-      user2 = described_class.create(first_name: 'b', last_name: 'c', email: 'abcd@def.com', password: 'password1', password_confirmation: 'password1')
-      expect(User.authenticate_with_credentials(user1.email, user2.password)).to be nil
+      expect(User.authenticate_with_credentials(@subject1.email, @subject2.password)).to be nil
     end
 
 
