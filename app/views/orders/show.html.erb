@@ -5,8 +5,8 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4><br>
-    <p>Your order confirmation has been sent to <%= @order.email %>.<p>
+    <h4>Thank you for your order <%= current_user.first_name %>!</h4><br>
+    <p>Your order confirmation has been sent to <%= current_user.email %>.<p>
   </div>
 
   <div class="panel panel-default items">
