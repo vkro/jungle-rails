@@ -41,5 +41,14 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
   * database-cleaner
 
 ## Final Product
+Home page
+![Home page of Jungle e-commerce project](https://github.com/vkro/jungle-rails/blob/master/docs/Jungle-Homepage.png?raw=true)
 
+Cart
+![Jungle e-commerce project cart](https://github.com/vkro/jungle-rails/blob/master/docs/Jungle-Cart.png?raw=true)
 
+Completed Order
+![Jungle e-commerce project completed order page](https://github.com/vkro/jungle-rails/blob/master/docs/Jungle-Completed_Order.png?raw=true)
+
+Admin - Categories page
+![Jungle e-commerce project - Admin categories page](https://github.com/vkro/jungle-rails/blob/master/docs/Jungle-Admin-Categories.png?raw=true)
