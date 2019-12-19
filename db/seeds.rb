@@ -28,6 +28,7 @@ puts "Finding or Creating Categories ..."
 cat1 = Category.find_or_create_by! name: 'Apparel'
 cat2 = Category.find_or_create_by! name: 'Electronics'
 cat3 = Category.find_or_create_by! name: 'Furniture'
+cat4 = Category.find_or_create_by! name: 'Mini Size'
 
 ## PRODUCTS
 
@@ -132,5 +133,12 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+cat4.products.create!({
+  name:  'Tiny Hat',
+  description: Faker::Hipster.paragraph(4),
+  image: open_asset('mini1.jpg'),
+  quantity: 72,
+  price: 74.99
+})
 
 puts "DONE!"
