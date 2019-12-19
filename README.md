@@ -1,6 +1,15 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+A mini e-commerce application built with Rails 4.2. This was built on an existing code base provided by [Lighthouse Labs](https://www.lighthouselabs.ca/), as a tool to learn Ruby and Rails during their web development bootcamp.
+
+New features implemented include:
+- automated testing with RSpec, Capybara, Poltergeist, and database-cleaner
+- admin authentication, and ability to create new products and categories
+- user sign-up and authentication
+- order details recap
+- sold-out badge
+- notify user & prevent check-out for empty cart
+
 
 
 ## Setup
@@ -25,3 +34,12 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+* bcrypt
+* Testing: 
+  * Capybara
+  * Poltergeist
+  * database-cleaner
+
+## Final Product
+
+
